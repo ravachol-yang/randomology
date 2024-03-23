@@ -1,13 +1,13 @@
 # the randomology telegram bot
 
 # config
-from config import config
+from configs import config
 
 # handlers
-from app.handlers.info import get_info
-from app.handlers.random_text import get_random_text
-from app.handlers.random_text import get_random_text_mono
-from app.handlers.inline import inline_dispatch
+from app.handlers.info_handler import get_info
+from app.handlers.text_handler import get_random_text
+from app.handlers.text_handler import get_random_text_mono
+from app.handlers.inline_handler import inline_dispatch
 
 # pyTelegramBotAPI
 import telebot

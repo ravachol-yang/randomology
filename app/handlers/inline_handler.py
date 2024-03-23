@@ -3,7 +3,7 @@
 from telebot import TeleBot
 from telebot import types
 
-from app.handlers.random_text import generate_random_text 
+from app.services.text_service import generate_random_text 
 
 def inline_dispatch(inline_query, bot: TeleBot):
     try:

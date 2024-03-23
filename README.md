@@ -1,13 +1,13 @@
 # Randomology
-qwd00[1;d]2;]12dd;1]2;1]2d;1]2d
+A telegram bot to generate random stuff, I built this to chat with my friend by randomly
 
-## asd];q[w;]q;qv;w]q;]v\
-7&*(&^*U()*)()(**)(*)(*)(*)(*)(*)()
-## asd;]as;]\as;c]ascq@$#$
+## Dependency
+pyTelegrambotAPI
 
+## Running
+In the project directory
 ``` shell
-cascascasciasicaiscjaiscjasjcaicjia*&^$^%&*(&^T
+python3 bot.py
 ```
-%^&*(*&^%^&*^&*&*())
-## *&s^%$#$SDascas
-$&*)@ccacdcdkjchdjkc
+## LICENSE
+random LICENSE &^$%^&*()_)(*&^*)
