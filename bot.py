@@ -17,6 +17,17 @@ from telebot import types
 
 bot = telebot.TeleBot(config.BOT_TOKEN)
 
+def commands():
+    bot.set_my_commands([
+        telebot.types.BotCommand("help", "Get info"),
+        telebot.types.BotCommand("random", "Random text"),
+        telebot.types.BotCommand("random_mono", "Monospace random text"),
+        telebot.types.BotCommand("random_audio", "Random audio"),
+        telebot.types.BotCommand("random_voice", "Random voice")
+    ])
+
+commands()
+
 def handlers():
     # info
     bot.register_message_handler(get_info, commands=['start', 'help'], pass_bot=True)
