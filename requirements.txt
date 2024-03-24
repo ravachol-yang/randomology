@@ -1,5 +1,7 @@
 certifi==2024.2.2
 charset-normalizer==3.3.2
+ffmpeg-python==0.2.0
+future==1.0.0
 idna==3.6
 iniconfig==2.0.0
 packaging==24.0

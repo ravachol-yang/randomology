@@ -9,10 +9,14 @@ SPECIAL = ['_', '*', '[', ']', '(', ')', '~', '`', '<' , '>', '#', '+', '-', '='
 
 # invoke with "/random" command
 def get_random_text(message: Message, bot: TeleBot):
+    # pretend to be typing
+    bot.send_chat_action(message.chat.id, "typing")
     bot.send_message(message.chat.id, generate_random_text())
 
 # invoke with "/random_mono"
 def get_random_text_mono(message: Message, bot: TeleBot):
+    # pretend to be typing
+    bot.send_chat_action(message.chat.id, "typing")
     text = generate_random_text()
     # add an "\" before every special char for parsing markdown
     for i in SPECIAL:
