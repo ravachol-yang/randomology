@@ -2,6 +2,7 @@
 
 import fastapi
 import uvicorn
+import telebot
 
 from configs import env
 
