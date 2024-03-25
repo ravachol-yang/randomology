@@ -24,7 +24,7 @@ def run(bot:TeleBot):
     # create the app
     app = fastapi.FastAPI(docs=None, redoc_url=None)
 
-    @app.post(f'/{API_TOKEN}/')
+    @app.post(f'/{TOKEN}/')
     def process_webhook(update:dict):
         if update:
             update = telebot.types.Update.de_json(update)
