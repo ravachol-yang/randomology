@@ -4,7 +4,7 @@ from telebot import TeleBot
 from telebot import types
 
 from app.services.text_service import generate_random_text
-from app.services.audio_service import generate_random_audio
+from app.services.audio_service import generate_random_mix
 
 def inline_dispatch(inline_query, bot: TeleBot):
     try:
