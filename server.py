@@ -39,7 +39,7 @@ def run(bot:TeleBot):
     # set webhook
     bot.set_webhook(
         url=URL_BASE+URL_PATH,
-        certificate=SSL_CERT
+        certificate=open(SSL_CERT, 'r').read_text()
     )
     
     # run the server
