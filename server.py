@@ -38,7 +38,7 @@ def run(bot:TeleBot):
 
     # set webhook
     bot.set_webhook(
-        url=URL_BASE+URL_PATH,
+        url=URL_BASE+URL_PATH
     )
     
     # run the server
