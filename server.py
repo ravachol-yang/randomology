@@ -45,7 +45,7 @@ def run(bot:TeleBot):
         app,
         host=HOST,
         port=PORT,
-        ssl_cerfile=SSL_CERT,
+        ssl_certfile=SSL_CERT,
         ssl_keyfile=SSL_PRIV
     )
 
