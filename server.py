@@ -29,7 +29,7 @@ def run(bot:TeleBot):
     def process_webhook(update:dict):
         if update:
             update = telebot.types.Update.de_json(update)
-            bot.process_new_pupdates([update])
+            bot.process_new_updates([update])
         else:
             return
                
