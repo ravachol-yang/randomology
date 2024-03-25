@@ -4,7 +4,6 @@ import fastapi
 import uvicorn
 
 from configs import env
-from routes import handlers
 
 from telebot import TeleBot
 
@@ -33,8 +32,10 @@ def run(bot:TeleBot):
         else:
             return
 
-    handlers.register(bot)
-        
+    @bot.message_handler(func=lambda message: True, content_types=['text'])
+    def echo_message(message):
+        bot.reply_to(message, message.text)    
+               
     # remove previous webhook(?)
     bot.remove_webhook()
 
