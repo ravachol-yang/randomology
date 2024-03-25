@@ -8,7 +8,7 @@ import uuid
 import ffmpeg
 import math
 
-from configs import config
+from configs import dirs
 
 SAMPLE_RATE = 8000
 FREQ_HIGH = 800
@@ -31,7 +31,7 @@ def sine_sample(freq, volume, x):
 # Generate a noise
 def generate_random_noise():
     name = uuid.uuid4().hex
-    audio_path = config.AUDIO_DIR+"/noise_"+name+".wav"
+    audio_path = dirs.AUDIO_DIR+"/noise_"+name+".wav"
     audio = wave.open(audio_path, "wb")
     audio.setparams((2, 2, 24000, 0, 'NONE', 'not compressed'))
     len = random.randint(20, 60)
@@ -54,7 +54,7 @@ def generate_random_noise():
 # Generate a sine wave audio
 def generate_random_sine():
     name = uuid.uuid4().hex
-    audio_path = config.AUDIO_DIR+"/sine_"+name+".wav"
+    audio_path = dirs.AUDIO_DIR+"/sine_"+name+".wav"
     audio = wave.open(audio_path, "wb")
     audio.setparams((2, 2, 24000, 0, 'NONE', 'not compressed'))
 
@@ -80,7 +80,7 @@ def generate_random_sine():
 def generate_random_mix():
     # filename
     name = uuid.uuid4().hex
-    audio_path = config.AUDIO_DIR+"/mix_"+name+".wav"
+    audio_path = dirs.AUDIO_DIR+"/mix_"+name+".wav"
     # open file in write mode
     audio = wave.open(audio_path, "wb")
     audio.setparams((2, 2, 24000, 0, 'NONE', 'not compressed'))
