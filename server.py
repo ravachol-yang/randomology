@@ -38,7 +38,8 @@ def run(bot:TeleBot):
 
     # set webhook
     bot.set_webhook(
-        url=URL_BASE+URL_PATH
+        url=URL_BASE+URL_PATH,
+        certificate=open(SSL_CERT, 'r')
     )
     
     # run the server
@@ -46,6 +47,8 @@ def run(bot:TeleBot):
         app,
         host=HOST,
         port=PORT,
+        ssl_certfile=SSL_CERT,
+        ssl_keyfile=SSL_PRIV
     )
 
 # when in dev environment 
