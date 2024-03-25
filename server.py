@@ -13,7 +13,7 @@ HOST = env.SERVER_HOST
 PORT = env.SERVER_PORT
 LISTEN = env.SERVER_LISTEN
 
-SSL_SERT = env.SSL_CERT
+SSL_CERT = env.SSL_CERT
 SSL_PRIV = env.SSL_PRIV
 
 URL_BASE = "https://{}:{}".format(HOST, PORT)
