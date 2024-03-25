@@ -24,13 +24,14 @@ def run(bot:TeleBot):
     # create the app
     app = fastapi.FastAPI(docs=None, redoc_url=None)
 
+    @app.post(f'/{API_TOKEN}/')
     def process_webhook(update:dict):
         if update:
             update = telebot.types.Update.de_json(update)
             bot.process_new_updates([update])
         else:
             return
-
+    
     # remove previous webhook(?)
     bot.remove_webhook()
 
