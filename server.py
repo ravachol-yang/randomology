@@ -17,14 +17,14 @@ SSL_CERT = env.SSL_CERT
 SSL_PRIV = env.SSL_PRIV
 
 URL_BASE = "https://{}:{}".format(HOST, PORT)
-URL_PATH = "/{}/".format(TOKEN)
+URL_PATH = "/bot{}/".format(TOKEN)
 
 # when in production
 def run(bot:TeleBot):
     # create the app
     app = fastapi.FastAPI(docs=None, redoc_url=None)
 
-    @app.post(f'/{TOKEN}/')
+    @app.post(f'/bot{TOKEN}/')
     def process_webhook(update:dict):
         if update:
             update = telebot.types.Update.de_json(update)

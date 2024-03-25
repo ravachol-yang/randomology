@@ -1,7 +1,5 @@
 # the randomology telegram bot
 
-import logging
-
 # config
 from configs import env 
 
@@ -11,9 +9,6 @@ import server
 
 # pyTelegramBotAPI
 import telebot
-
-logger = telebot.logger
-telebot.logger.setLevel(logging.INFO)
 
 # bot initialize 
 bot = telebot.TeleBot(env.BOT_TOKEN)
