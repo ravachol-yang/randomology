@@ -1,4 +1,4 @@
-# random_text.py
+# text_handler.py
 from telebot import TeleBot
 from telebot.types import Message
 
