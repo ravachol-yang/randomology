@@ -28,13 +28,9 @@ def run(bot:TeleBot):
     def process_webhook(update:dict):
         if update:
             update = telebot.types.Update.de_json(update)
-            bot.process_new_updates([update])
+            bot.process_new_pupdates([update])
         else:
             return
-
-    @app.get("/")
-    def read_root():
-        return {"Hello": "World"}
                
     # remove previous webhook(?)
     bot.remove_webhook()
