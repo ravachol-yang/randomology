@@ -19,7 +19,8 @@ commands.register(bot)
 # register handlers
 handlers.register(bot)
 
+# here we go !!!
 if env.BOT_ENVIRONMENT == "prod":
-    server.run()
+    server.run(bot)
 else:
-    server.run_dev()
+    server.run_dev(bot)
