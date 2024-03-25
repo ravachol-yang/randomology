@@ -32,9 +32,9 @@ def run(bot:TeleBot):
         else:
             return
 
-    @bot.message_handler(func=lambda message: True, content_types=['text'])
-    def echo_message(message):
-        bot.reply_to(message, message.text)    
+    @app.get("/")
+    def read_root():
+        return {"Hello": "World"}
                
     # remove previous webhook(?)
     bot.remove_webhook()
