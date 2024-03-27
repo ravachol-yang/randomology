@@ -8,7 +8,6 @@ from configs import env
 
 from telebot import TeleBot
 
-TOKEN = env.BOT_TOKEN
 NAME = env.BOT_NAME
 
 HOST = env.SERVER_HOST
@@ -19,7 +18,7 @@ SSL_CERT = env.SSL_CERT
 SSL_PRIV = env.SSL_PRIV
 
 URL_BASE = "https://{}:{}".format(HOST, PORT)
-URL_PATH = "/{}/".format(TOKEN)
+URL_PATH = "/{}/".format(NAME)
 
 # when in production
 def run(bot:TeleBot):
