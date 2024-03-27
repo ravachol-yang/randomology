@@ -31,6 +31,16 @@ SERVER_LISTEN = env(section = "server",
                     key = "listen",
                     default = "0.0.0.0")
 
+# host for your webhook endpoint, defualt to SERVER_HOST
+WEBHOOK_HOST = env(section = "webhook",
+                   key = "host",
+                   default = SERVER_HOST)
+
+# port for your webhook endpoint, defualt to SERVER_PORT
+WEBHOOK_PORT = env(section = "webhook",
+                   key = "port",
+                   default = SERVER_PORT)
+
 # path to your ssl cert file
 SSL_CERT = env(section = "ssl",
                key = "cert",

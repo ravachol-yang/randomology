@@ -8,24 +8,27 @@ from configs import env
 
 from telebot import TeleBot
 
-NAME = env.BOT_NAME
+BOT_NAME = env.BOT_NAME
 
-HOST = env.SERVER_HOST
-PORT = env.SERVER_PORT
-LISTEN = env.SERVER_LISTEN
+SERVER_HOST = env.SERVER_HOST
+SERVER_PORT = env.SERVER_PORT
+SERVER_LISTEN = env.SERVER_LISTEN
+
+WEBHOOK_HOST = env.WEBHOOK_HOST
+WEBHOOK_PORT = env.WEBHOOK_PORT
 
 SSL_CERT = env.SSL_CERT
 SSL_PRIV = env.SSL_PRIV
 
-URL_BASE = "https://{}:{}".format(HOST, PORT)
-URL_PATH = "/{}/".format(NAME)
+URL_BASE = "https://{}:{}".format(WEBHOOK_HOST, WEBHOOK_PORT)
+URL_PATH = "/{}/".format(BOT_NAME)
 
 # when in production
 def run(bot:TeleBot):
     # create the app
     app = fastapi.FastAPI(docs=None, redoc_url=None)
 
-    @app.post(f'/{NAME}/')
+    @app.post(f'/{BOT_NAME}/')
     def process_webhook(update:dict):
         if update:
             update = telebot.types.Update.de_json(update)
@@ -44,8 +47,8 @@ def run(bot:TeleBot):
     # run the server
     uvicorn.run(
         app,
-        host=HOST,
-        port=PORT,
+        host=SERVER_HOST,
+        port=SERVER_PORT,
         ssl_certfile=SSL_CERT,
         ssl_keyfile=SSL_PRIV
     )
