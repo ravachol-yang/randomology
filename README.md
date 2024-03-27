@@ -1,6 +1,5 @@
 # Randomology
-<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ravachol-yang/randomology/pytest.yml?style=for-the-badge&logo=github&label=tests&link=https%3A%2F%2Fgithub.com%2Fravachol-yang%2Frandomology%2Factions">
-<img alt="Static Badge" src="https://img.shields.io/badge/telegram-grey?style=for-the-badge&logo=telegram&link=https%3A%2F%2Ft.me%2Frandomology_bot">
+<a href="https://github.com/ravachol-yang/randomology/actions"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ravachol-yang/randomology/pytest.yml?style=for-the-badge&logo=github&label=tests"></a> <a href="https://t.me/randomology_bot"><img alt="Static Badge" src="https://img.shields.io/badge/telegram-grey?style=for-the-badge&logo=telegram"></a>
 
 
 A telegram bot to generate random stuff, I built this to chat with my friend randomly.
@@ -88,6 +87,7 @@ now you can run it !
 
 ## LICENSE
 *(&%&^*&(*&%*^(&)))
-<img alt="GitHub License" src="https://img.shields.io/github/license/ravachol-yang/randomology?style=for-the-badge&link=https%3A%2F%2Fgithub.com%2Fravachol-yang%2Frandomology%2Fblob%2Fmaster%2FLICENSE">
+
+<a href="https://github.com/ravachol-yang/randomology/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/ravachol-yang/randomology?style=for-the-badge"></a>
 
 
