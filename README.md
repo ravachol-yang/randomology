@@ -28,6 +28,26 @@ Copy the example config and change it to meet your own environment:
 # copy the config example, don't forget to change it
 cp .env.toml env.toml
 ```
+in `env.toml`:
+``` toml
+[bot]
+token = "" # your token here
+name = "" # your bot name, for webhook uri
+environment = "prod" # "prod" for production environment
+
+[server]
+host = "example.com" # set your own
+port = 8443
+listen = "0.0.0.0" 
+
+[webhook]
+host = ""
+port = 443
+
+[ssl]
+cert = "/path/to/fullchain.pem"
+priv = "/path/to/priv.pem"
+```
 ### Testing
 run `pytest` && check if every test passes
 ``` shell
@@ -37,6 +57,8 @@ python3 -m pytest
 Static resources are hosted in `public/` and the bot-generated contents are under `storage/`, use `link_storage.sh` to create a symlic:
 ``` shell
 ./link_storage.sh
+# to remove it:
+# ./link_storage.sh remove 
 ```
 copy and change the config file to configure Nginx:
 ``` shell
