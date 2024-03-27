@@ -47,7 +47,7 @@ def run(bot:TeleBot):
     # run the server
     uvicorn.run(
         app,
-        host=SERVER_HOST,
+        host=SERVER_LISTEN,
         port=SERVER_PORT,
         ssl_certfile=SSL_CERT,
         ssl_keyfile=SSL_PRIV
