@@ -6,6 +6,11 @@ BOT_TOKEN = env(section = "bot",
                 key = "token",
                 default="")
 
+# the bot name
+BOT_NAME = env(section = "bot",
+               key = "name",
+               default = "randomology")
+
 # environment, dev or prod
 BOT_ENVIRONMENT = env(section = "bot",
                       key = "environment",
