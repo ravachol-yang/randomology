@@ -24,3 +24,5 @@ def inline_voice(inline_query, bot:TeleBot, data:dict):
         voice = types.InlineQueryResultVoice('1', title = 'Random Voice',
                                              voice_url=voice)
         bot.answer_inline_query(inline_query.id, [voice], cache_time=5)
+    except Exception as e:
+        print(e)
