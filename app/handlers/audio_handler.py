@@ -19,5 +19,7 @@ def get_random_audio(message: Message, bot: TeleBot, data: dict):
 def get_random_voice(message: Message, bot: TeleBot, data: dict):
     # pretend to be sending voice
     bot.send_chat_action(message.chat.id, "record_voice")
+    options = data['options']
+    
     voice = Voice(bot, message)
     voice.generate(options).to_voice().send()
