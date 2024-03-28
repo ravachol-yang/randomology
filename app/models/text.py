@@ -28,26 +28,21 @@ class Text(Base):
         "punc": True,
         "d": True,
     }
-
-    # set content
-    def set_content(self, text:str):
-        self._content = text
-        return self
     
     # generate random string, returns the object itself
     def generate(self, options = None):
 
         # set default options
-        self._options = dict(self.OPTIONS_DEFAULT)
+        self._options = dict(Text.OPTIONS_DEFAULT)
         
         # if option not nothing
-        if options:
+        if options and not options == ['']:
             option_bodies = []
             # check each option in options
             for option in options:
                 # if the option is empty, we see it as setting all others false
                 if option == '':
-                    for i in self.OPTIONS_AVAILABLE:
+                    for i in Text.OPTIONS_AVAILABLE:
                         if i not in option_bodies:
                             self._options[i] = False
                 # if the option is not empty
@@ -60,7 +55,7 @@ class Text(Base):
                         # if option has no operator, it is "+"
                         option_body = option
                         option_bodies.append(option_body)
-                    if option_body in self.OPTIONS_AVAILABLE:
+                    if option_body in Text.OPTIONS_AVAILABLE:
                         if option[0] == '-':
                             self._options[option_body] = False
                         else:
@@ -101,7 +96,7 @@ class Text(Base):
         # if there is no puncs, no need to check
         if self._options['punc']:
             # add a "\" before every special char 
-            for i in self.SPECIAL:
+            for i in Text.SPECIAL:
                 self._content = self._content.replace(i,"\\"+i)
         # add ` ` around to parse to mono
         self._content = "` "+self._content+" `"

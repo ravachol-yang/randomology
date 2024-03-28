@@ -19,6 +19,10 @@ class Base:
     def content(self):
         return self._content
 
+    # set content
+    def set_content(self, content:str):
+        self._content = content
+
     # generate content
     def generate(self):
         raise NotImplementedError

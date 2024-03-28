@@ -7,8 +7,6 @@ from app.models.text import Text
 
 def inline_dispatch(inline_query, bot: TeleBot, data:dict):
     options = data['options']
-    if options == ['']:
-        options = None
     text = Text()
     try:
         text = types.InlineQueryResultArticle('1', 'Random Text',

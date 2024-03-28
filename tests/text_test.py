@@ -16,6 +16,16 @@ def test_text_option_only():
     text = Text()
     text.generate(options = ['en', ''])
     assert isinstance(text.content(),str) and text.content().isascii()
+
+def test_text_wrong_options():
+    text = Text()
+    text.generate(options = ['aaa'])
+    assert isinstance(text.content(),str) and text.content().isascii()
+
+def test_text_empty_options():
+    text = Text()
+    text.generate(options = [''])
+    assert isinstance(text.content(),str) and text.content().isascii()
     
 
 def test_text_mono():
