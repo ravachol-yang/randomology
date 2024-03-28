@@ -117,7 +117,7 @@ class Audio(Base):
         audio.writeframes(values_str)
         audio.close()
 
-        self._content = Audio.HOST_PREFIX+"storage/audio"+self._filename
+        self._content = Audio.HOST_PREFIX+"/storage/audio"+self._filename
         print(self._content)
         
         return self
