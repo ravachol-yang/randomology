@@ -1,6 +1,6 @@
 # Randomology
-<a href="https://github.com/ravachol-yang/randomology/actions"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ravachol-yang/randomology/pytest.yml?style=for-the-badge&logo=github&label=tests"></a> <a href="https://t.me/randomology_bot"><img alt="Static Badge" src="https://img.shields.io/badge/telegram-grey?style=for-the-badge&logo=telegram"></a>
-
+[![Github Actions Status](https://img.shields.io/github/actions/workflow/status/ravachol-yang/randomology/pytest.yml?style=for-the-badge&logo=github&label=tests)](https://github.com/ravachol-yang/randomology/actions)
+[![Telegram](https://img.shields.io/badge/telegram-26a4e2?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/randomology_bot)
 
 A telegram bot to generate random stuff, I built this to chat with my friend randomly.
 Using [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI) for talking with telegram server.
@@ -67,7 +67,7 @@ copy and change the config file to configure Nginx:
 ``` shell
 cp nginx.conf /etc/nginx/sites-available/example.com
 # don't forget to change it !!
-ln /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled
 ```
 restart `nginx.service`
 ### Running
@@ -88,6 +88,6 @@ now you can run it !
 ## LICENSE
 *(&%&^*&(*&%*^(&)))
 
-<a href="https://github.com/ravachol-yang/randomology/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/ravachol-yang/randomology?style=for-the-badge"></a>
+[![License](https://img.shields.io/github/license/ravachol-yang/randomology?style=for-the-badge)](https://github.com/ravachol-yang/randomology/blob/master/LICENSE)
 
 
