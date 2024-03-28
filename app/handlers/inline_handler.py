@@ -3,13 +3,18 @@
 from telebot import TeleBot
 from telebot import types
 
-from app.services.text_service import generate_random_text
-from app.services.audio_service import generate_random_mix
+from app.models.text import Text
+
+from app.handlers.utils import get_options
 
 def inline_dispatch(inline_query, bot: TeleBot):
+    options = get_options(inline_query.query, False)
+    if options == ['']:
+        options = None
+    text = Text()
     try:
         text = types.InlineQueryResultArticle('1', 'Random Text',
-                                              types.InputTextMessageContent(generate_random_text()))
+                                              types.InputTextMessageContent(text.generate(options).content()))
         audio = types.InlineQueryResultArticle('2',
                                                'TODO',
                                                types.InputTextMessageContent("TODO"))
