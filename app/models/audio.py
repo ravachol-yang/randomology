@@ -18,7 +18,7 @@ class Audio(Base):
 
     MSG_TYPE:str = MsgType.AUDIO
 
-    HOST_PREFIX = "https://{}:{}".format(env.WEBHOOK_HOST, env.WEBHOOK_PORT)
+    HOST_PREFIX = "https://{}".format(env.WEBHOOK_HOST)
     
     SAMPLE_RATE = 8000
     FREQ_HIGH = 800
