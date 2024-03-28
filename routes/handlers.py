@@ -25,6 +25,5 @@ def register(bot:TeleBot):
     # chat member change
     bot.register_message_handler(get_welcome, content_types=['new_chat_members'], pass_bot=True)
     # inline
-    bot.register_inline_handler(inline_text, lambda query: query.query == "", pass_bot=True)
     bot.register_inline_handler(inline_voice, lambda query: query.query.split(" ",1)[0] == "/v", pass_bot=True)
-    bot.register_inline_handler(inline_text, lambda query: query , pass_bot=True)
+    bot.register_inline_handler(inline_text, lambda query: query or len(query.query) == 0, pass_bot=True)
