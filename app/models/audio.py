@@ -19,7 +19,7 @@ class Audio(Base):
 
     MSG_TYPE:str = MsgType.AUDIO
 
-    HOST_PREFIX = "http://{}:{}".format(env.WEBHOOK_HOST, env.WEBHOOK_PORT)
+    HOST_PREFIX = "https://{}:{}".format(env.WEBHOOK_HOST, env.WEBHOOK_PORT)
     
     SAMPLE_RATE = 8000
     FREQ_HIGH = 800
@@ -136,4 +136,5 @@ class Audio(Base):
         self._filename = mpegfile
         self._filepath = dirs.AUDIO_DIR+self._filename
         self._content = Audio.HOST_PREFIX+"/storage/audio"+self._filename
+        print self._content
         return self
