@@ -5,10 +5,8 @@ from telebot import types
 
 from app.models.text import Text
 
-from app.handlers.utils import get_options
-
-def inline_dispatch(inline_query, bot: TeleBot):
-    options = get_options(inline_query.query, False)
+def inline_dispatch(inline_query, bot: TeleBot, data:dict):
+    options = data['options']
     if options == ['']:
         options = None
     text = Text()
