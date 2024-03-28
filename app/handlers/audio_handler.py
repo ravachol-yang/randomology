@@ -13,7 +13,7 @@ def get_random_audio(message: Message, bot: TeleBot, data: dict):
     options = data['options']
 
     audio = Audio(bot, message)
-    audio.generate(options).to_mpeg.send()
+    audio.generate(options).to_mpeg().send()
     
 # invoke with "/voice" command
 def get_random_voice(message: Message, bot: TeleBot):
