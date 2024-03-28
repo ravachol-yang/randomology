@@ -9,7 +9,8 @@ from app.handlers.text_handler import get_random_text_mono
 from app.handlers.audio_handler import get_random_audio
 from app.handlers.audio_handler import get_random_voice
 from app.handlers.member_handler import get_welcome
-from app.handlers.inline_handler import inline_dispatch
+from app.handlers.inline_handler import inline_text
+from app.handlers.inline_handler import inline_voice
 
 # register handlers in chats
 def register(bot:TeleBot):
@@ -24,4 +25,5 @@ def register(bot:TeleBot):
     # chat member change
     bot.register_message_handler(get_welcome, content_types=['new_chat_members'], pass_bot=True)
     # inline
-    bot.register_inline_handler(inline_dispatch, lambda query: query, pass_bot=True)
+    bot.register_inline_handler(inline_text, lambda query: query, pass_bot=True)
+    bot.register_inline_handler(inline_voice, lambda query: query.query.split(" ",1)[0] == "/v", pass_bot=True)

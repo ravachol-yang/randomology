@@ -5,14 +5,18 @@ from telebot.types import Message
 
 class OptionMiddleware(BaseMiddleware):
     def __init__(self):
-        self.update_types = ['message', 'inline_query', 'new_chat_members']
+        self.update_types = ['message', 'inline_query']
 
     def pre_process(self, message, data):
 
         # if it's an inline query
         if isinstance(message, InlineQuery):
             msg_text = message.query
-            options = [msg_text]
+            if msg_text[0] == '/':
+                options = msg_text.split(" ",1)
+                options.pop(0)
+            else:
+                options = [msg_text]
             
         # if it's a message
         elif isinstance(message, Message):
