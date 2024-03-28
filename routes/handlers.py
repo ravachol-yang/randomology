@@ -23,7 +23,7 @@ def register(bot:TeleBot):
     # random voice (a mix of noise and sine wave sent as voice)
     bot.register_message_handler(get_random_voice, commands=['voice'], pass_bot=True)
     # chat member change
-    bot.register_message_handler(get_welcome, content_types=['new_chat_members'], pass_bot=True)
+    # bot.register_message_handler(get_welcome, content_types=['new_chat_members'], pass_bot=True)
     # inline
     bot.register_inline_handler(inline_voice, lambda query: query.query.split(" ",1)[0] == "/v", pass_bot=True)
     bot.register_inline_handler(inline_text, lambda query: query , pass_bot=True)
