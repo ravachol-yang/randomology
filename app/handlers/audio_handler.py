@@ -7,7 +7,7 @@ from app.models.audio import Audio
 from app.services.audio_service import generate_random_voice
 
 # invoke with "/audio" command
-def get_random_noise(message: Message, bot: TeleBot, data: dict):
+def get_random_audio(message: Message, bot: TeleBot, data: dict):
     # pretend to be uploading audio
     bot.send_chat_action(message.chat.id, "upload_voice")
     options = data['options']
