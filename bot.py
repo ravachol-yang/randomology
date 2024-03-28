@@ -1,10 +1,9 @@
 # the randomology telegram bot
 
 # config
-from configs import env 
-
 from routes import commands
 from routes import handlers
+from app.middlewares.option_middleware import OptionMiddleware 
 
 from configs import env
 
@@ -16,13 +15,16 @@ from telebot import TeleBot
 import telebot
 
 # bot initialize 
-bot = telebot.TeleBot(env.BOT_TOKEN)
+bot = telebot.TeleBot(env.BOT_TOKEN, use_class_middlewares=True)
 
 # register commands
 commands.register(bot)
 
 # register handlers
 handlers.register(bot)
+
+# Setup middlewares
+bot.setup_middleware(OptionMiddleware())
 
 # here we go !!!
 if env.BOT_ENVIRONMENT == "prod":

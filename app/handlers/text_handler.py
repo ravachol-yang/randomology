@@ -2,23 +2,25 @@
 from telebot import TeleBot
 from telebot.types import Message
 
-from app.services.text_service import generate_random_text
-import string
+from app.models.text import Text
 
-SPECIAL = ['_', '*', '[', ']', '(', ')', '~', '`', '<' , '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' ]
-
-# invoke with "/random" command
-def get_random_text(message: Message, bot: TeleBot):
+# invoke with "/text" command
+def get_random_text(message: Message, bot: TeleBot, data:dict):
     # pretend to be typing
     bot.send_chat_action(message.chat.id, "typing")
-    bot.send_message(message.chat.id, generate_random_text())
+    # get options from message
+    options = data['options']
+        
+    text = Text(bot, message)
+    text.generate(options).send()
 
-# invoke with "/random_mono"
-def get_random_text_mono(message: Message, bot: TeleBot):
+# invoke with "/mono"
+def get_random_text_mono(message: Message, bot: TeleBot, data:dict):
     # pretend to be typing
     bot.send_chat_action(message.chat.id, "typing")
-    text = generate_random_text()
-    # add an "\" before every special char for parsing markdown
-    for i in SPECIAL:
-        text = text.replace(i, "\\"+i)
-    bot.send_message(message.chat.id, "`"+text+"`", parse_mode="MarkdownV2")
+
+    options = data['options']
+    
+    mono = Text(bot, message)
+    mono.generate(options)
+    mono.to_mono().send(parse_mode="MarkdownV2")

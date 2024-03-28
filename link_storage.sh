@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FROM=$(pwd)/storage
+FROM=$(pwd)/storage/public
 TO=$(pwd)/public/storage
 
 if [[ $1 == "remove" ]]; then

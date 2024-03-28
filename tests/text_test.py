@@ -1,11 +1,43 @@
 # text tests
 
-from app.services.text_service import generate_random_text
+from app.models.text import Text
+from configs import templates
 
 def test_text_generated():
-    text = generate_random_text()
-    assert isinstance(text, str)
+    text = Text()
+    assert isinstance(text.generate().content(),str)
 
-def test_text_length():
-    text = generate_random_text()
-    assert len(text) >= 30 and len(text) <= 120
+def test_text_options():
+    text = Text()
+    text.generate(options = ['zh','+en', '-d'])
+    assert isinstance(text.content(),str)
+
+def test_text_option_only():
+    text = Text()
+    text.generate(options = ['en', ''])
+    assert isinstance(text.content(),str) and text.content().isascii()
+
+def test_text_wrong_options():
+    text = Text()
+    text.generate(options = ['aaa'])
+    assert isinstance(text.content(),str) and text.content().isascii()
+
+def test_text_empty_options():
+    text = Text()
+    text.generate(options = [''])
+    assert isinstance(text.content(),str) and text.content().isascii()
+    
+
+def test_text_mono():
+    text = Text()
+    text.generate()
+    text.to_mono()
+    assert isinstance(text.content(),str) and (text.content()[0]=="`") and (text.content()[-1]=="`")
+
+def test_get_welcome():
+    welcome = templates.WELCOME_MESSAGE
+    assert isinstance(welcome, str)
+
+def test_get_info():
+    info = templates.INFO_MESSAGE
+    assert isinstance(info, str)
