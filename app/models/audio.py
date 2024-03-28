@@ -134,8 +134,8 @@ class Audio(Base):
             .output(mpegfile)
             .run()
         )
-        self._filename = mpegfile
+        self._filename = mpegfile_name
         self._filepath = dirs.AUDIO_DIR+self._filename
-        self._content = Audio.HOST_PREFIX+"/storage/audio"+self._mpegfile_name
+        self._content = Audio.HOST_PREFIX+"/storage/audio"+self._filename
         print(self._content)
         return self
