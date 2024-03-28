@@ -12,6 +12,8 @@ class OptionMiddleware(BaseMiddleware):
         # if it's an inline query
         if isinstance(message, InlineQuery):
             msg_text = message.query
+            if msg_text == "":
+                msg_text = "*"
             if msg_text[0] == '/':
                 options = msg_text.split(" ",1)
                 options.pop(0)
