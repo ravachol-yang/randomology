@@ -19,7 +19,7 @@ def inline_text(inline_query, bot: TeleBot, data:dict):
 
 def inline_voice(inline_query, bot:TeleBot, data:dict):
     options = data['options']
-    voice = Voice().generate().to_voice().content()
+    voice = Voice().generate(options).to_voice().content()
     try:
         voice = types.InlineQueryResultVoice('1', title = 'Random Voice',
                                              voice_url=voice)
