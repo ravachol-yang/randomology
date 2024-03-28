@@ -28,4 +28,4 @@ def register(bot:TeleBot):
     # inline
     bot.register_inline_handler(inline_default, lambda query: len(query.query) == 0, pass_bot=True)
     bot.register_inline_handler(inline_voice, lambda query: query.query.split(" ",1)[0] == "/v", pass_bot=True)
-    bot.register_inline_handler(inline_text, lambda query: query , pass_bot=True)
+    bot.register_inline_handler(inline_text, lambda query: len(query.query) > 0 , pass_bot=True)
