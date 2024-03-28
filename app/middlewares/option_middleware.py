@@ -5,7 +5,7 @@ from telebot.types import Message
 
 class OptionMiddleware(BaseMiddleware):
     def __init__(self):
-        self.update_types = ['message', 'inline_query', 'chat_new_members']
+        self.update_types = ['message', 'inline_query', 'new_chat_members']
 
     def pre_process(self, message, data):
 
