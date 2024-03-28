@@ -6,15 +6,6 @@ from telebot import types
 from app.models.text import Text
 from app.models.voice import Voice
 
-def inline_default(inline_query, bot: TeleBot):
-    text = Text()
-    try:
-        text = types.InlineQueryResultArticle('1', 'Random Text',
-                                              types.InputTextMessageContent(text.generate().content()))
-        bot.answer_inline_query(inline_query.id, [text], cache_time=0)
-    except Exception as e:
-        print(e)
-
 def inline_text(inline_query, bot: TeleBot, data:dict):
     options = data['options']
     text = Text()
