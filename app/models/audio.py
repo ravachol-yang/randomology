@@ -7,6 +7,7 @@ import random
 import struct
 import uuid
 import math
+import ffmpeg
 
 from app.models.base import Base
 from app.models.msg_type import MsgType
@@ -18,7 +19,7 @@ class Audio(Base):
 
     MSG_TYPE:str = MsgType.AUDIO
 
-    HOST_PREFIX = "https://{}".format(env.WEBHOOK_HOST)
+    HOST_PREFIX = "https://{}:{}".format(env.WEBHOOK_HOST, env.WEBHOOK_PORT)
     
     SAMPLE_RATE = 8000
     FREQ_HIGH = 800
@@ -120,4 +121,19 @@ class Audio(Base):
         self._content = Audio.HOST_PREFIX+"/storage/audio"+self._filename
         print(self._content)
         
+        return self
+
+    # convert to mpeg for telegran server to download
+    def to_mpeg(self):
+        wavfile = self._filepath
+        mpegfile = dirs.AUDIO_DIR+"/"+self._filename+".mpeg"
+        (
+            ffmpeg
+            .input(wavfile, format="wav")
+            .output(mpegfile)
+            .run()
+        )
+        self._filename = mpegfile
+        self._filepath = dirs.AUDIO_DIR+self._filename
+        self._content = Audio.HOST_PREFIX+"/storage/audio"+self._filename
         return self

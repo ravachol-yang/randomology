@@ -21,3 +21,9 @@ def test_audio_wrong_options():
 def test_audio_empty_options():
     audio = Audio()
     assert isinstance(audio.generate(options = ['']), Audio)
+
+def test_audio_to_mpeg():
+    audio = Audio()
+    audio.generate()
+    mpeg = audio.to_mpeg()
+    assert isinstance(mpeg, Audio)
