@@ -126,7 +126,8 @@ class Audio(Base):
     # convert to mpeg for telegran server to download
     def to_mpeg(self):
         wavfile = self._filepath
-        mpegfile = dirs.AUDIO_DIR+self._filename+".mp3"
+        mpegfile_name = self._filename+".mp3"
+        mpegfile = dirs.AUDIO_DIR  + mpegfile_name
         (
             ffmpeg
             .input(wavfile, format="wav")
@@ -135,6 +136,6 @@ class Audio(Base):
         )
         self._filename = mpegfile
         self._filepath = dirs.AUDIO_DIR+self._filename
-        self._content = Audio.HOST_PREFIX+"/storage/audio"+self._filename
+        self._content = Audio.HOST_PREFIX+"/storage/audio"+self._mpegfile_name
         print(self._content)
         return self
