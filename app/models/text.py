@@ -35,8 +35,6 @@ class Text(Base):
              "content": string.digits}
     }
     
-    _options = dict(OPTIONS_DEFAULT)
-    
     # generate random string, returns the object itself
     def generate(self, options = None):
         # check options

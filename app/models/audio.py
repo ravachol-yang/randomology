@@ -34,8 +34,6 @@ class Audio(Base):
         "n":{"enabled": False}
     }
 
-    _options = dict(OPTIONS_DEFAULT)
-
     # generate a noise sample
     @staticmethod
     def noise_sample():

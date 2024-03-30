@@ -2,6 +2,7 @@
 base.py
 the Base model
 """ 
+import copy
 
 from telebot import TeleBot
 from telebot.types import Message
@@ -11,13 +12,12 @@ class Base:
     OPTIONS_AVAILABLE = []
     OPTIONS_DEFAULT = {}
 
-    _options = dict(OPTIONS_DEFAULT)
-
     def __init__(self,
                  bot:TeleBot = None,
                  message:Message = None):
         self.__bot = bot
         self.__message = message
+        self._options = copy.deepcopy(self.OPTIONS_DEFAULT)
 
     
     # get content of this object
@@ -33,7 +33,7 @@ class Base:
         if options["bool_options"]:
             opt = options["options"]
             # index for mapping from boolean array to options
-            index  = 0
+            index = 0
             for i in self._options:
                 # change options accordingly, opt with be chopped to the last elements
                 self._options[i]["enabled"] = opt[-len(self.OPTIONS_AVAILABLE):][index]
