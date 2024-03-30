@@ -13,7 +13,7 @@ class OptionMiddleware(BaseMiddleware):
         if isinstance(message, InlineQuery):
             msg_text = message.query
             if msg_text == "":
-                msg_text = "*"
+                msg_text = "placeholder"
             if msg_text[0] == '/':
                 options = msg_text.split(" ",1)
                 options.pop(0)
@@ -26,12 +26,33 @@ class OptionMiddleware(BaseMiddleware):
             options = msg_text.split(" ",1)
             options.pop(0)
 
+        opt_data = dict({"bool_options": False,
+                        "options":[]})
         if options:
-            # remove spaces and make options list
-            options = options[0].replace(" ","")
-            options = options.split(",")
+            # takes the option string
+            opt_str = options[0]
+            try:
+                # if user input options are in binary
+                opt = bin(int(opt_str, 2))[2:]
+            except ValueError:
+                try:
+                    # if user input options are in hex
+                    opt = bin(int(opt_str,16))[2:]
+                except ValueError:
+                    # if it's in plain string
+                    opt = opt_str
+            # build binary array and not too long
+            if opt.isdigit():
+                # the last 16 options
+                opt = opt[-16:]
+                # set the flag to true
+                opt_data["bool_options"] = True
+                for i in opt.zfill(16):
+                    opt_data["options"].append(bool(int(i)))
+            else:
+                opt_data["options"].append(opt)
 
-        data['options'] = options
+        data["options"] = opt_data
 
     def post_process(self, message, data, exception=None):
         pass

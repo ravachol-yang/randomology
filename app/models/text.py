@@ -20,67 +20,39 @@ class Text(Base):
                '<', '>', '#', '+',
                '-', '=', '|', '{',
                '}', '.', '!']
-    
-    OPTIONS_AVAILABLE = ['en', 'zh', 'punc','d']
+
+    # Stands for zh, english, punctuations, digits, must be in order
+    OPTIONS_AVAILABLE = ['z', 'e', 'p','d']
+    # Default: 0111
     OPTIONS_DEFAULT = {
-        "en": True,
-        "zh": False,
-        "punc": True,
-        "d": True,
+        "z":{"enabled": False,
+             "content": lambda zh:[zh+chr(random.randint(0x4e00,0xa000)) for i in range(0,30)]},
+        "e":{"enabled": True,
+             "content": string.ascii_letters},
+        "p":{"enabled": True,
+             "content": string.punctuation},
+        "d":{"enabled": True,
+             "content": string.digits}
     }
+    
+    _options = dict(OPTIONS_DEFAULT)
     
     # generate random string, returns the object itself
     def generate(self, options = None):
-
-        # set default options
-        self._options = dict(Text.OPTIONS_DEFAULT)
+        # check options
+        if options:
+            self.set_options(options)
         
-        # if option not nothing
-        if options and not options == ['']:
-            option_bodies = []
-            # check each option in options
-            for option in options:
-                # if the option is empty, we see it as setting all others false
-                if option == '':
-                    for i in Text.OPTIONS_AVAILABLE:
-                        if i not in option_bodies:
-                            self._options[i] = False
-                # if the option is not empty
-                else:
-                    # get option body without "+" or "-"
-                    if option[0] == "+" or option[0] == "-":
-                        option_body = option.replace(option[0],"",1)
-                        option_bodies.append(option_body)
-                    else:
-                        # if option has no operator, it is "+"
-                        option_body = option
-                        option_bodies.append(option_body)
-                    if option_body in Text.OPTIONS_AVAILABLE:
-                        if option[0] == '-':
-                            self._options[option_body] = False
-                        else:
-                            self._options[option_body] = True
-
-        # make choice string
+        # build the choices string
         choices_string = ""
-
-        # add strings for each options
-        if self._options["en"]:
-            choices_string += string.ascii_letters
-
-        if self._options["zh"]:
-            zh_string = ""
-            # generate a Chinese string of 30 chars
-            for i in range(0,30):
-                zh_string += chr(random.randint(0x4e00, 0xa000))
-            choices_string += zh_string
-        
-        if self._options["punc"]:
-            choices_string += string.punctuation
-
-        if self._options["d"]:
-            choices_string += string.digits
-
+        for i in self._options:
+            if self._options[i]["enabled"]:
+                # if the content is a function
+                if callable(self._options[i]["content"]):
+                    choices_string += "".join(self._options[i]["content"](""))
+                else:
+                    choices_string += "".join(self._options[i]["content"])
+                    
         # if the string is empty, return random *s
         if not choices_string:
             choices_string = "*"
@@ -94,7 +66,7 @@ class Text(Base):
     # convert to mono for markdown parsing
     def to_mono(self):
         # if there is no puncs, no need to check
-        if self._options['punc']:
+        if self._options["p"]["enabled"]:
             # add a "\" before every special char 
             for i in Text.SPECIAL:
                 self._content = self._content.replace(i,"\\"+i)

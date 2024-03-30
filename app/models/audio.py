@@ -27,11 +27,14 @@ class Audio(Base):
     VOLUME_HIGH = 0.6
     VOLUME_LOW = 0.3
 
-    OPTIONS_AVAILABLE = ['sine', 'noise']
+    # s: sine; n: noise
+    OPTIONS_AVAILABLE = ['s', 'n']
     OPTIONS_DEFAULT = {
-        "sine": True,
-        "noise": False
+        "s":{"enabled": True},
+        "n":{"enabled": False}
     }
+
+    _options = dict(OPTIONS_DEFAULT)
 
     # generate a noise sample
     @staticmethod
@@ -51,7 +54,7 @@ class Audio(Base):
     def _mix_up(self, len):
         values = []
         for i in range(0, len):
-            if self._options['sine']:
+            if self._options['s']["enabled"]:
                 # two channels
                 freq_channel_1 = random.randint(Audio.FREQ_LOW, Audio.FREQ_HIGH)
                 freq_channel_2 = random.randint(Audio.FREQ_LOW, Audio.FREQ_HIGH)
@@ -62,21 +65,21 @@ class Audio(Base):
             # duration of every chunk
             chunk_duration = random.randint(1, 3)
             for x in range(0, chunk_duration * Audio.SAMPLE_RATE):
-                if self._options['sine']:
+                if self._options['s']["enabled"]:
                     sine_channel_1 = Audio.sine_sample(freq_channel_1, volume_channel_1, x)
                     sine_channel_2 = Audio.sine_sample(freq_channel_2, volume_channel_2, x)
-                if self._options['noise']:
+                if self._options['n']["enabled"]:
                     noise_channel_1 = Audio.noise_sample()
                     noise_channel_2 = Audio.noise_sample()
 
                 # build into values
-                if self._options['sine'] and self._options['noise']:
+                if self._options['s']["enabled"] and self._options['n']["enabled"]:
                     values.append(random.choice([sine_channel_1, noise_channel_1]))
                     values.append(random.choice([sine_channel_2, noise_channel_2]))
-                elif self._options['sine'] and not self._options['noise']:
+                elif self._options['s']["enabled"] and not self._options['n']["enabled"]:
                     values.append(sine_channel_1)
                     values.append(sine_channel_2)
-                elif self._options['noise'] and not self._options['sine']:
+                elif self._options['n']["enabled"] and not self._options['s']["enabled"]:
                     values.append(noise_channel_1)
                     values.append(noise_channel_2)
                  
@@ -88,21 +91,21 @@ class Audio(Base):
     def generate(self, options=None):
         name = uuid.uuid4().hex
         # add prefix to file name
-        name_prefix = "/sine-"
+        name_prefix = "/s-"
+
         # set options
-        self._options = dict(Audio.OPTIONS_DEFAULT)
-        if options and not options == ['']:
-            name_prefix = "/"
-            self._options = dict.fromkeys(Audio.OPTIONS_AVAILABLE, False)
-            for option in options:
-                if option in Audio.OPTIONS_AVAILABLE:
-                    self._options[option] = True
-                    name_prefix = name_prefix + option + "-"
+        if options:
+            self.set_options(options)
+
+        # apply options to filename
+        for i in self._options:
+            if self._options[i]["enabled"]:
+                name_prefix = name_prefix + i + "-"
 
         # if options are empty now, return to default
-        if self._options == dict.fromkeys(Audio.OPTIONS_AVAILABLE, False):
+        if self._options == dict.fromkeys(Audio.OPTIONS_AVAILABLE, {"enabled":False}):
             self._options = dict(Audio.OPTIONS_DEFAULT)
-            name_prefix += "sine-"
+            name_prefix = "/s-"
             
         self._filename = name_prefix+name+".wav"
         self._filepath = dirs.AUDIO_DIR+self._filename
