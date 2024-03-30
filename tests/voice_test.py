@@ -8,4 +8,4 @@ def test_voice_generated():
 
 def test_voice_noise():
     voice = Voice()
-    assert isinstance(voice.generate(options = ['noise']).to_voice(), Voice)
+    assert isinstance(voice.generate(options = {"bool_options":True, "options": [False, True]}).to_voice(), Voice)

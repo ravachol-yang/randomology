@@ -91,8 +91,7 @@ class Audio(Base):
     def generate(self, options=None):
         name = uuid.uuid4().hex
         # add prefix to file name
-        name_prefix = "/s-"
-
+        name_prefix = "/"
         # set options
         if options:
             self.set_options(options)
