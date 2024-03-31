@@ -9,22 +9,22 @@ def test_text_generated():
 
 def test_text_options():
     text = Text()
-    text.generate(options = ['zh','+en', '-d'])
+    text.generate(options = {"bool_options":True, "options":[True, True, True, False]})
     assert isinstance(text.content(),str)
 
 def test_text_option_only():
     text = Text()
-    text.generate(options = ['en', ''])
-    assert isinstance(text.content(),str) and text.content().isascii()
+    text.generate(options = {"bool_options":True, "options":[False, False, False, True]})
+    assert isinstance(text.content(),str) and text.content().isdigit()
 
 def test_text_wrong_options():
     text = Text()
-    text.generate(options = ['aaa'])
+    text.generate(options = {"bool_options": True, "options":[True,False,True,False,False]})
     assert isinstance(text.content(),str) and text.content().isascii()
 
 def test_text_empty_options():
     text = Text()
-    text.generate(options = [''])
+    text.generate(options = {"bool_options": False, "options": "aaa"})
     assert isinstance(text.content(),str) and text.content().isascii()
     
 

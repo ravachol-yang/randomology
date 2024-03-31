@@ -8,19 +8,15 @@ def test_audio_generated():
 
 def test_audio_noise():
     audio = Audio()
-    assert isinstance(audio.generate(options = ['noise']), Audio)
+    assert isinstance(audio.generate(options = {"bool_options": True, "options":[False,True]}), Audio)
 
 def test_audio_mix():
     audio = Audio()
-    assert isinstance(audio.generate(options = ['noise', 'sine']), Audio)
-
-def test_audio_wrong_options():
-    audio = Audio()
-    assert isinstance(audio.generate(options = ['aa']), Audio)
+    assert isinstance(audio.generate(options = {"bool_options": True, "options":[True,True]}), Audio)
 
 def test_audio_empty_options():
     audio = Audio()
-    assert isinstance(audio.generate(options = ['']), Audio)
+    assert isinstance(audio.generate(options = {"bool_options": False, "options": "aa"}), Audio)
 
 def test_audio_to_mpeg():
     audio = Audio()
