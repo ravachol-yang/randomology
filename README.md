@@ -65,10 +65,22 @@ Static resources are hosted in `public/` and the bot-generated contents are unde
 ```
 copy and change the config file to configure Nginx:
 ``` shell
-cp nginx.conf /etc/nginx/sites-available/example.com
+cp example.conf /etc/nginx/sites-available/example.com
 # don't forget to change it !!
 ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled
 ```
+add `map` block in `nginx.conf` into your system `nginx.conf`'s `http` block
+
+``` nginx
+http {
+	# other stuff ...
+    map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+    }
+}
+```
+
 restart `nginx.service`
 ### Running
 In the project directory, run `python3`

@@ -41,6 +41,10 @@ WEBHOOK_PORT = env(section = "webhook",
                    key = "port",
                    default = SERVER_PORT)
 
+SSL_ENABLED = env(section = "ssl",
+                  key = "enabled",
+                  default = False)
+
 # path to your ssl cert file
 SSL_CERT = env(section = "ssl",
                key = "cert",

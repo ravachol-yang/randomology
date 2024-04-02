@@ -17,11 +17,13 @@ SERVER_LISTEN = env.SERVER_LISTEN
 WEBHOOK_HOST = env.WEBHOOK_HOST
 WEBHOOK_PORT = env.WEBHOOK_PORT
 
+SSL_ENABLED = env.SSL_ENABLED
 SSL_CERT = env.SSL_CERT
 SSL_PRIV = env.SSL_PRIV
 
 URL_BASE = "https://{}:{}".format(WEBHOOK_HOST, WEBHOOK_PORT)
 URL_PATH = "/{}/".format(BOT_NAME)
+UDS_PATH = "/tmp/randomology/uvicorn.sock"
 
 # when in production
 def run(bot:TeleBot):
@@ -43,15 +45,24 @@ def run(bot:TeleBot):
     bot.set_webhook(
         url=URL_BASE+URL_PATH
     )
-    
-    # run the server
-    uvicorn.run(
-        app,
-        host=SERVER_LISTEN,
-        port=SERVER_PORT,
-        ssl_certfile=SSL_CERT,
-        ssl_keyfile=SSL_PRIV
-    )
+
+    if SSL_ENABLED :
+        # run the server
+        uvicorn.run(
+            app,
+            host=SERVER_LISTEN,
+            port=SERVER_PORT,
+            ssl_certfile=SSL_CERT,
+            ssl_keyfile=SSL_PRIV,
+            uds=UDS_PATH
+        )
+    else:
+        uvicorn.run(
+            app,
+            host=SERVER_LISTEN,
+            port=SERVER_PORT,
+            uds=UDS_PATH
+        )
 
 # when in dev environment 
 def run_dev(bot:TeleBot):
